@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <me.waveverht.library.TagCornerImageView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/p5"
+        app:tag_background_color="#f92a0a"
+        app:tag_text="小悟空"
+        app:tag_gravity="right_bottom_corner"
+        app:tag_type="rect" />
+
+</RelativeLayout>
