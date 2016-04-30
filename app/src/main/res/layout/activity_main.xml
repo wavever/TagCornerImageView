@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <me.waveverht.library.TagCornerImageView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+    <me.wavever.library.TagCornerImageView
+        android:id="@+id/img1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/p5"
-        app:tag_background_color="#f92a0a"
-        app:tag_text="小悟空"
-        app:tag_gravity="right_bottom_corner"
+        android:src="@mipmap/p5"
+        app:tag_background_color="#ff5703"
+        app:tag_text="卡卡罗特"
+        app:tag_gravity="right_top_corner"
         app:tag_type="rect" />
-
 </RelativeLayout>

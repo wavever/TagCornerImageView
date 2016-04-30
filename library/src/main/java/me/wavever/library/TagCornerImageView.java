@@ -1,4 +1,4 @@
-package me.waveverht.library;
+package me.wavever.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
+
+import me.waveverht.library.R;
 
 /**
  * Created by wavever on 2016/4/19.
@@ -123,39 +125,92 @@ public class TagCornerImageView extends ImageView {
     }
 
     private void drawTagTriangle(Canvas canvas) {
-        canvas.save();
         int width = getMeasuredWidth() / 4;
+        if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
+            drawTagTriangleRightTop(canvas, width);
+        } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
+            drawTagTriangleRightBottom(canvas,width);
+        } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
+           drawTagTriangleLeftBottom(canvas,width);
+        } else {
+            drawTagTriangleLeftTop(canvas, width);
+        }
+    }
+
+    private void drawTagTriangleLeftTop(Canvas canvas,int width){
         int iconWidth = 0;
         int iconHeight = 0;
-        if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
-            mPath.moveTo(getMeasuredWidth() - width, 0);
-            mPath.lineTo(getMeasuredWidth(), width);
-            mPath.lineTo(getMeasuredWidth(), 0);
-            iconWidth = getMeasuredWidth() - width / 2;
-        } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
-            mPath.moveTo(getMeasuredWidth(), getMeasuredHeight() - width);
-            mPath.lineTo(getMeasuredWidth() - width, getMeasuredHeight());
-            mPath.lineTo(getMeasuredWidth(), getMeasuredHeight());
-            iconWidth = getMeasuredWidth() - width / 2;
-            iconHeight = getMeasuredHeight() - width / 2;
-        } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
-            mPath.moveTo(0, getMeasuredHeight() - width);
-            mPath.lineTo(width, getMeasuredHeight());
-            mPath.lineTo(0, getMeasuredHeight());
-            iconHeight = getMeasuredHeight() - width / 2;
-        } else {
-            mPath.lineTo(width, 0);
-            mPath.lineTo(0, width);
-            mPath.lineTo(0, 0);
-        }
+        canvas.save();
+        mPath.lineTo(width, 0);
+        mPath.lineTo(0, width);
+        mPath.lineTo(0, 0);
         mPath.close();
         canvas.drawPath(mPath, mTagPaint);
+        canvas.restore();
+
+        canvas.save();
         if (mTagIcon != null) {
             canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
         }
         canvas.restore();
     }
 
+    private void drawTagTriangleRightTop(Canvas canvas,int width){
+        int iconWidth = getMeasuredWidth() - width / 2;
+        int iconHeight = 0;
+        canvas.save();
+        mPath.moveTo(getMeasuredWidth() - width, 0);
+        mPath.lineTo(getMeasuredWidth(), width);
+        mPath.lineTo(getMeasuredWidth(), 0);
+        canvas.drawPath(mPath,mTagPaint);
+        canvas.restore();
+        canvas.save();
+
+
+        if(mTagIcon != null){
+            canvas.drawBitmap(mTagIcon,iconWidth,iconHeight,null);
+        }
+        canvas.restore();
+    }
+
+    private void drawTagTriangleRightBottom(Canvas canvas,int width){
+        int iconWidth = getMeasuredWidth() - width / 2;
+        int iconHeight = getMeasuredHeight() - width / 2;
+        canvas.save();
+        mPath.moveTo(getMeasuredWidth(), getMeasuredHeight() - width);
+        mPath.lineTo(getMeasuredWidth() - width, getMeasuredHeight());
+        mPath.lineTo(getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawPath(mPath, mTagPaint);
+        canvas.restore();
+
+        canvas.save();
+        if (mTagIcon != null) {
+            canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
+        }
+        canvas.restore();
+    }
+
+    private void drawTagTriangleLeftBottom(Canvas canvas,int width){
+        int iconWidth = 0;
+        int iconHeight = getMeasuredHeight() - width / 2;
+        canvas.save();
+        mPath.moveTo(0, getMeasuredHeight() - width);
+        mPath.lineTo(width, getMeasuredHeight());
+        mPath.lineTo(0, getMeasuredHeight());
+        canvas.drawPath(mPath, mTagPaint);
+        canvas.restore();
+
+        canvas.save();
+        if (mTagIcon != null) {
+            canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
+        }
+        canvas.restore();
+    }
+
+    /**
+     * RoundRect Tag
+     * @param canvas
+     */
     private void drawTagRoundRect(Canvas canvas) {
         canvas.save();
         canvas.drawCircle(getMeasuredHeight() / 3, getMeasuredHeight() / 3, 200, mTagPaint);
@@ -175,6 +230,11 @@ public class TagCornerImageView extends ImageView {
         }
     }
 
+    /**
+     * Rect Tag
+     * @param canvas
+     * @param width
+     */
     private void drawTagRectLeftTop(Canvas canvas, int width) {
         canvas.save();
         mPath.moveTo(width, 0);
