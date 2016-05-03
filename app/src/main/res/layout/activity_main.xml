@@ -6,12 +6,14 @@
 
     <me.wavever.library.TagCornerImageView
         android:id="@+id/img1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/p5"
-        app:tag_background_color="#ff5703"
+        app:tag_text_size="20sp"
+        app:tag_icon="@mipmap/github2"
+        app:tag_background_color="#000000"
         app:tag_text="卡卡罗特"
         app:tag_gravity="right_top_corner"
-        app:tag_type="rect" />
+        app:tag_type="triangle" />
 </RelativeLayout>

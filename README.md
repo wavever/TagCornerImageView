@@ -1,15 +1,16 @@
-# TagCornerImageView
+#TagCornerImageView
 TagCornerImageView is a custom imageview that can add tag with some different style.
 ##ScreenShots
 ![](http://ww4.sinaimg.cn/large/ace35ee1gw1f3dwmleqofj20740dqabe.jpg)
 ![](http://ww2.sinaimg.cn/large/ace35ee1gw1f3dwn9m8ydj20750dsmyj.jpg)
 ![](http://ww1.sinaimg.cn/large/ace35ee1gw1f3dwnfe2i0j20770dymyi.jpg)
-![](http://ww4.sinaimg.cn/mw690/ace35ee1gw1f3dwpjv4dlj20790dumyj.jpg)
+##Demo
+[Fir.im](http://fir.im/tagcornerimg)
 ##Features
 TagCornerImageView is extended ImageView,so You can use it as a ImageView,and can add one of style for tag.
 ##Usage
 ###Maven
-```
+```xml
 <dependency>
   <groupId>me.wavever.tagcornerimageview</groupId>
   <artifactId>library</artifactId>
@@ -19,7 +20,7 @@ TagCornerImageView is extended ImageView,so You can use it as a ImageView,and ca
 ```
 ###Gradle<br>
 Add this to your module's `build.gradle` file:
-```
+```groovy
 dependencies {
     ...
     compile 'me.wavever.tagcornerimageview:library:0.2.0'
@@ -27,7 +28,7 @@ dependencies {
 }
 ```
 ###Custom Attribute
-`tag_type` the type of tag , now there are two types , triangle and rect.default value is `rect`<br>
+`tag_type` the type of tag , now there are two types , `triangle` and `rect`.default value is `rect`<br>
 `tag_text` the text of rect tag.<br>
 `tag_text_color` the text color of rect tag , defaule value is white<br>
 `tag_text_size` the text size of rect tag , default value is 18sp.<br>
@@ -41,7 +42,7 @@ dependencies {
 ##TODO
 * custom the tag's width by dp.
 * add more types of tag.
-## License
+##License
 
     Copyright (c) 2016 Wavever
 
