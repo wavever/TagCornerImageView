@@ -43,6 +43,7 @@ public class TagCornerImageView extends ImageView {
 
     private Bitmap mTagIcon;
     private boolean mTagIconTurn;
+    private int mTagIconPadding;
 
     private int mImgWidth;
     private int mImgHeight;
@@ -82,11 +83,13 @@ public class TagCornerImageView extends ImageView {
         mTagText = a.getString(R.styleable.TagCornerImageView_tag_text);
         mTagTextColor = a.getColor(R.styleable.TagCornerImageView_tag_text_color, Color.WHITE);
         mTagTextSize = a.getDimensionPixelSize(R.styleable.TagCornerImageView_tag_text_size,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics()));
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics()));
         mTagGravity = a.getInt(R.styleable.TagCornerImageView_tag_gravity, 0);
         mTagType = a.getInt(R.styleable.TagCornerImageView_tag_type, 0);
         mTagIcon = BitmapFactory.decodeResource(getResources(), a.getResourceId(R.styleable.TagCornerImageView_tag_icon, 0));
         mTagIconTurn = a.getBoolean(R.styleable.TagCornerImageView_tag_icon_turn, true);
+        mTagIconPadding = a.getDimensionPixelSize(R.styleable.TagCornerImageView_tag_icon_padding,
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,0,getResources().getDisplayMetrics()));
 
         a.recycle();
         init();
@@ -119,13 +122,11 @@ public class TagCornerImageView extends ImageView {
             drawTagRect(canvas);
         } else if (mTagType == Type.ROUND_RECT.ordinal()) {
             drawTagRoundRect(canvas);
-        } else {
-            drawTagRect(canvas);
         }
     }
 
     private void drawTagTriangle(Canvas canvas) {
-        int width = getMeasuredWidth() / 4;
+        int width = getMeasuredWidth() >= getMeasuredHeight() ? getMeasuredWidth() / 4 : getMeasuredHeight() / 4;
         if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
             drawTagTriangleRightTop(canvas, width);
         } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
@@ -138,8 +139,8 @@ public class TagCornerImageView extends ImageView {
     }
 
     private void drawTagTriangleLeftTop(Canvas canvas,int width){
-        int iconWidth = 0;
-        int iconHeight = 0;
+        int iconLeft = width / 2 - mTagIcon.getWidth(); //icon左上角的x坐标
+        int iconTop = width  / 2 - mTagIcon.getHeight(); //icon左上角的y坐标
         canvas.save();
         mPath.lineTo(width, 0);
         mPath.lineTo(0, width);
@@ -150,14 +151,14 @@ public class TagCornerImageView extends ImageView {
 
         canvas.save();
         if (mTagIcon != null) {
-            canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
+            canvas.drawBitmap(mTagIcon, iconLeft, iconTop, null);
         }
         canvas.restore();
     }
 
     private void drawTagTriangleRightTop(Canvas canvas,int width){
-        int iconWidth = getMeasuredWidth() - width / 2;
-        int iconHeight = 0;
+        int iconLeft = getMeasuredWidth() - width / 2; //icon左上角x坐标 W-w+w/2
+        int iconTop = width / 2 - mTagIcon.getHeight();
         canvas.save();
         mPath.moveTo(getMeasuredWidth() - width, 0);
         mPath.lineTo(getMeasuredWidth(), width);
@@ -168,14 +169,14 @@ public class TagCornerImageView extends ImageView {
 
 
         if(mTagIcon != null){
-            canvas.drawBitmap(mTagIcon,iconWidth,iconHeight,null);
+            canvas.drawBitmap(mTagIcon,iconLeft,iconTop,null);
         }
         canvas.restore();
     }
 
     private void drawTagTriangleRightBottom(Canvas canvas,int width){
-        int iconWidth = getMeasuredWidth() - width / 2;
-        int iconHeight = getMeasuredHeight() - width / 2;
+        int iconLeft = getMeasuredWidth() - width / 2;
+        int iconTop = getMeasuredHeight() - width / 2;
         canvas.save();
         mPath.moveTo(getMeasuredWidth(), getMeasuredHeight() - width);
         mPath.lineTo(getMeasuredWidth() - width, getMeasuredHeight());
@@ -185,14 +186,14 @@ public class TagCornerImageView extends ImageView {
 
         canvas.save();
         if (mTagIcon != null) {
-            canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
+            canvas.drawBitmap(mTagIcon, iconLeft, iconTop, null);
         }
         canvas.restore();
     }
 
     private void drawTagTriangleLeftBottom(Canvas canvas,int width){
-        int iconWidth = 0;
-        int iconHeight = getMeasuredHeight() - width / 2;
+        int iconLeft = width / 2 - mTagIcon.getWidth(); //icon左上角x坐标
+        int iconTop = getMeasuredHeight() - width / 2;
         canvas.save();
         mPath.moveTo(0, getMeasuredHeight() - width);
         mPath.lineTo(width, getMeasuredHeight());
@@ -202,7 +203,7 @@ public class TagCornerImageView extends ImageView {
 
         canvas.save();
         if (mTagIcon != null) {
-            canvas.drawBitmap(mTagIcon, iconWidth, iconHeight, null);
+            canvas.drawBitmap(mTagIcon, iconLeft, iconTop, null);
         }
         canvas.restore();
     }

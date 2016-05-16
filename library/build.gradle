@@ -6,7 +6,7 @@ android {
 
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-    resourcePrefix "wavever__"
+    resourcePrefix "wavever_"
 
     defaultConfig {
         minSdkVersion 15
@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -27,9 +32,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
 }
 
-def siteUrl = 'https://github.com/wavever/TagCornerImageView'      // 项目的主页
-def gitUrl = 'https://github.com/wavever/TagCornerImageView.git'   // Git仓库的url
-group = "me.wavever.tagcornerimageview" // Maven Group ID for the artifact，一般填你唯一的包名
+def siteUrl = 'https://github.com/wavever/TagCornerImageView'
+def gitUrl = 'https://github.com/wavever/TagCornerImageView.git'
+def issueUrl = 'https://github.com/wavever/TagCornerImageView/issues'
+group = "me.wavever.tagcornerimageview"
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -37,7 +43,7 @@ install {
             project {
                 packaging 'aar'
                 // Add your description here
-                name 'A custom imageview that can add different style tag on corner'  //项目描述
+                name 'A custom imageview that can add different style tag on corner'
                 url siteUrl
                 // Set your license
                 licenses {
@@ -48,7 +54,7 @@ install {
                 }
                 developers {
                     developer {
-                        id 'wavever'       //填写开发者基本信息
+                        id 'wavever'
                         name 'wavever'
                         email 'wavever.ht@gmail.com'
                     }
@@ -85,11 +91,15 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        repo = "maven"  //发布到Bintray的那个仓库里，默认账户有四个库，我们这里上传到maven库
-        name = "TagCornerImageview"  //发布到Bintray上的项目名字
+        repo = "maven"
+        name = "TagCornerImageview"
+        desc = "A library to add tag for ImageView."
         websiteUrl = siteUrl
         vcsUrl = gitUrl
+        issueTrackerUrl = issueUrl
         licenses = ["Apache-2.0"]
+        labels = ['android']
         publish = true
+        publicDownloadNumbers = true
     }
 }

@@ -1,9 +1,8 @@
 #TagCornerImageView
 TagCornerImageView is a custom imageview that can add tag with some different style.
 ##ScreenShots
-![](http://ww4.sinaimg.cn/large/ace35ee1gw1f3dwmleqofj20740dqabe.jpg)
-![](http://ww2.sinaimg.cn/large/ace35ee1gw1f3dwn9m8ydj20750dsmyj.jpg)
-![](http://ww1.sinaimg.cn/large/ace35ee1gw1f3dwnfe2i0j20770dymyi.jpg)
+![](http://ww1.sinaimg.cn/large/ace35ee1gw1f3xc9mun0vj206m0dcjsq.jpg)
+![](http://ww4.sinaimg.cn/mw690/ace35ee1gw1f3xbxxsrdxj206m0dcwfv.jpg)
 ##Demo
 [Fir.im](http://fir.im/tagcornerimg)
 ##Features

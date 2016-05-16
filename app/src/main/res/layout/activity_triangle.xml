@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,33 +13,30 @@
         android:layout_weight="1">
 
         <me.wavever.library.TagCornerImageView
-            android:id="@+id/rect_img1"
+            android:id="@+id/triangle_img1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wukong"
-            android:layout_margin="10dp"
+            android:src="@mipmap/guixianren"
             app:tag_background_color="#f56112"
             app:tag_gravity="left_top_corner"
-            app:tag_icon="@mipmap/github2"
-            app:tag_text="小悟空"
-            app:tag_text_size="14sp"
-            app:tag_type="rect" />
+            app:tag_icon="@drawable/ic_android_white_18dp"
+            app:tag_type="triangle" />
 
         <me.wavever.library.TagCornerImageView
-            android:id="@+id/rect_img2"
+            android:id="@+id/triangle_img2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wukong2"
-            android:layout_margin="10dp"
+            android:src="@mipmap/xiaobajie"
+            app:tag_background_color="#c19d09"
             app:tag_gravity="right_top_corner"
-            app:tag_background_color="#ea1f1c"
-            app:tag_text="小悟空"
-            app:tag_text_size="14sp"
-            app:tag_type="rect" />
+            app:tag_icon="@drawable/ic_android_white_18dp"
+            app:tag_type="triangle" />
     </LinearLayout>
 
     <LinearLayout
@@ -48,32 +45,30 @@
         android:layout_weight="1">
 
         <me.wavever.library.TagCornerImageView
-            android:id="@+id/rect_img3"
+            android:id="@+id/triangle_img3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/qiqi"
-            android:layout_margin="10dp"
+            android:src="@mipmap/kelin"
+            app:tag_background_color="#04d75c"
             app:tag_gravity="left_bottom_corner"
-            app:tag_background_color="#3224f5"
-            app:tag_text="琪 琪"
-            app:tag_text_size="14sp"
-            app:tag_type="rect"/>
+            app:tag_icon="@drawable/ic_android_white_18dp"
+            app:tag_type="triangle" />
 
         <me.wavever.library.TagCornerImageView
-            android:id="@+id/rect_img4"
+            android:id="@+id/triangle_img4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/buma"
-            android:layout_margin="10dp"
-            app:tag_gravity="right_bottom_corner"
+            android:src="@mipmap/beijita"
             app:tag_background_color="#ae03f2"
-            app:tag_text="布 玛"
-            app:tag_text_size="14sp"
-            app:tag_type="rect" />
+            app:tag_gravity="right_bottom_corner"
+            app:tag_icon="@drawable/ic_android_white_18dp"
+            app:tag_type="triangle" />
     </LinearLayout>
 
 </LinearLayout>

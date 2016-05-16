@@ -8,6 +8,7 @@
         <attr name="tag_background_alpha" format="integer"/>
         <attr name="tag_icon" format="reference"/>
         <attr name="tag_icon_turn" format="boolean"/>
+        <attr name="tag_icon_padding" format="dimension"/>
         <attr name="tag_gravity">
             <enum name="left_top_corner" value="0"/>
             <enum name="right_top_corner" value="1"/>
