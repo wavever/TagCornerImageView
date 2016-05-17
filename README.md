@@ -1,12 +1,13 @@
 #TagCornerImageView
-TagCornerImageView is a custom imageview that can add tag with some different style.
+[中文](https://github.com/wavever/TagCornerImageView/blob/master/README_CN.md)<br>
+TagCornerImageView is a custom imageview that you can add different style tag on the corner of imageview.
 ##ScreenShots
 ![](http://ww1.sinaimg.cn/large/ace35ee1gw1f3xc9mun0vj206m0dcjsq.jpg)
 ![](http://ww4.sinaimg.cn/mw690/ace35ee1gw1f3xbxxsrdxj206m0dcwfv.jpg)
 ##Demo
-[Fir.im](http://fir.im/tagcornerimg)
+You can download demo from:[Fir.im](http://fir.im/tagcornerimg)
 ##Features
-TagCornerImageView is extended ImageView,so You can use it as a ImageView,and can add one of style for tag.
+TagCornerImageView is extended ImageView,so You can use it as a ImageView,and can add rect tag,triangle tag or rounded rectangle tag on corner.
 ##Usage
 ###Maven
 ```xml
@@ -38,11 +39,30 @@ dependencies {
 `right_top_corner`,
 `right_bottom_corner` and 
 `left_bottom_corner`.<br>
+**note** rect style now just support text,so use `app:tag_icon` in rect style is invalid.
+###xml
+```xml
+<me.wavever.library.TagCornerImageView
+            android:id="@+id/rect_img1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/wukong"
+            android:layout_margin="10dp"
+            app:tag_background_color="#f56112"
+            app:tag_gravity="left_top_corner"
+            app:tag_icon="@mipmap/ic_launcher"
+            app:tag_text="your text"
+            app:tag_text_size="normal is 18sp"
+            app:tag_type="rect|triangle|round" />
+```
 ##TODO
 * custom the tag's width by dp.
 * add more types of tag.
-##License
 
+License
+-------
     Copyright (c) 2016 Wavever
 
     Licensed under the Apache License, Version 2.0 (the "License");

@@ -22,7 +22,7 @@
             android:src="@mipmap/guixianren"
             app:tag_background_color="#f56112"
             app:tag_gravity="left_top_corner"
-            app:tag_icon="@drawable/ic_android_white_18dp"
+            app:tag_icon="@drawable/ic_cake_red_50_18dp"
             app:tag_type="triangle" />
 
         <me.wavever.library.TagCornerImageView
