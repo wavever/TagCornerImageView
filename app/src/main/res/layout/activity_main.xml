@@ -22,7 +22,6 @@
             android:layout_margin="10dp"
             app:tag_background_color="#f56112"
             app:tag_gravity="left_top_corner"
-            app:tag_icon="@mipmap/github2"
             app:tag_text="小悟空"
             app:tag_text_size="14sp"
             app:tag_type="rect" />
