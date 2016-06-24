@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-version = "0.2.0"
+version = "0.2.1"
 android {
 
     compileSdkVersion 23
@@ -9,7 +9,7 @@ android {
     resourcePrefix "wavever_"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 8
         targetSdkVersion 23
         versionCode 1
         versionName version

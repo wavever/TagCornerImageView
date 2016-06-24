@@ -71,7 +71,7 @@
             app:tag_gravity="right_bottom_corner"
             app:tag_background_color="#ae03f2"
             app:tag_text="布 玛"
-            app:tag_text_size="14sp"
+            app:tag_text_size="12sp"
             app:tag_type="rect" />
     </LinearLayout>
 
