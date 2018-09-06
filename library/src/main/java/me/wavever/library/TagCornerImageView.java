@@ -89,7 +89,7 @@ public class TagCornerImageView extends ImageView {
         mTagIcon = BitmapFactory.decodeResource(getResources(), a.getResourceId(R.styleable.TagCornerImageView_tag_icon, 0));
         mTagIconTurn = a.getBoolean(R.styleable.TagCornerImageView_tag_icon_turn, true);
         mTagIconPadding = a.getDimensionPixelSize(R.styleable.TagCornerImageView_tag_icon_padding,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,0,getResources().getDisplayMetrics()));
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()));
 
         a.recycle();
         init();
@@ -130,17 +130,17 @@ public class TagCornerImageView extends ImageView {
         if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
             drawTagTriangleRightTop(canvas, width);
         } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
-            drawTagTriangleRightBottom(canvas,width);
+            drawTagTriangleRightBottom(canvas, width);
         } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
-           drawTagTriangleLeftBottom(canvas,width);
+            drawTagTriangleLeftBottom(canvas, width);
         } else {
             drawTagTriangleLeftTop(canvas, width);
         }
     }
 
-    private void drawTagTriangleLeftTop(Canvas canvas,int width){
+    private void drawTagTriangleLeftTop(Canvas canvas, int width) {
         int iconLeft = width / 2 - mTagIcon.getWidth(); //icon左上角的x坐标
-        int iconTop = width  / 2 - mTagIcon.getHeight(); //icon左上角的y坐标
+        int iconTop = width / 2 - mTagIcon.getHeight(); //icon左上角的y坐标
         canvas.save();
         mPath.lineTo(width, 0);
         mPath.lineTo(0, width);
@@ -156,25 +156,25 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    private void drawTagTriangleRightTop(Canvas canvas,int width){
+    private void drawTagTriangleRightTop(Canvas canvas, int width) {
         int iconLeft = getMeasuredWidth() - width / 2; //icon左上角x坐标 W-w+w/2
         int iconTop = width / 2 - mTagIcon.getHeight();
         canvas.save();
         mPath.moveTo(getMeasuredWidth() - width, 0);
         mPath.lineTo(getMeasuredWidth(), width);
         mPath.lineTo(getMeasuredWidth(), 0);
-        canvas.drawPath(mPath,mTagPaint);
+        canvas.drawPath(mPath, mTagPaint);
         canvas.restore();
         canvas.save();
 
 
-        if(mTagIcon != null){
-            canvas.drawBitmap(mTagIcon,iconLeft,iconTop,null);
+        if (mTagIcon != null) {
+            canvas.drawBitmap(mTagIcon, iconLeft, iconTop, null);
         }
         canvas.restore();
     }
 
-    private void drawTagTriangleRightBottom(Canvas canvas,int width){
+    private void drawTagTriangleRightBottom(Canvas canvas, int width) {
         int iconLeft = getMeasuredWidth() - width / 2;
         int iconTop = getMeasuredHeight() - width / 2;
         canvas.save();
@@ -191,7 +191,7 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    private void drawTagTriangleLeftBottom(Canvas canvas,int width){
+    private void drawTagTriangleLeftBottom(Canvas canvas, int width) {
         int iconLeft = width / 2 - mTagIcon.getWidth(); //icon左上角x坐标
         int iconTop = getMeasuredHeight() - width / 2;
         canvas.save();
@@ -210,6 +210,7 @@ public class TagCornerImageView extends ImageView {
 
     /**
      * RoundRect Tag
+     *
      * @param canvas
      */
     private void drawTagRoundRect(Canvas canvas) {
@@ -221,11 +222,11 @@ public class TagCornerImageView extends ImageView {
     private void drawTagRect(Canvas canvas) {
         int width = getMeasuredWidth() / 6;
         if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
-            drawTagRectRightTop(canvas,width);
+            drawTagRectRightTop(canvas, width);
         } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
-           drawTagRectRightBottom(canvas,width);
+            drawTagRectRightBottom(canvas, width);
         } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
-           drawTagRectLeftBottom(canvas,width);
+            drawTagRectLeftBottom(canvas, width);
         } else {
             drawTagRectLeftTop(canvas, width);
         }
@@ -233,6 +234,7 @@ public class TagCornerImageView extends ImageView {
 
     /**
      * Rect Tag
+     *
      * @param canvas
      * @param width
      */
@@ -256,7 +258,7 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    private void drawTagRectRightTop(Canvas canvas,int width){
+    private void drawTagRectRightTop(Canvas canvas, int width) {
         canvas.save();
         mPath.moveTo(getMeasuredWidth() - width, 0);
         mPath.lineTo(getMeasuredWidth(), width);
@@ -267,7 +269,7 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
 
         canvas.save();
-        int x =  getMeasuredWidth() - (3 * width / 4);
+        int x = getMeasuredWidth() - (3 * width / 4);
         int y = 3 * width / 4;
         canvas.rotate(45, x, y);
         if (mTagText != null) {
@@ -276,7 +278,7 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    private void drawTagRectRightBottom(Canvas canvas,int width){
+    private void drawTagRectRightBottom(Canvas canvas, int width) {
         canvas.save();
         mPath.moveTo(getMeasuredWidth(), getMeasuredHeight() - 2 * width);
         mPath.lineTo(getMeasuredWidth(), getMeasuredHeight() - width);
@@ -296,7 +298,7 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    private void drawTagRectLeftBottom(Canvas canvas,int width){
+    private void drawTagRectLeftBottom(Canvas canvas, int width) {
         canvas.save();
         mPath.moveTo(0, getMeasuredHeight() - 2 * width);
         mPath.lineTo(0, getMeasuredHeight() - width);

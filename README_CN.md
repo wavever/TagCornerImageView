@@ -1,14 +1,18 @@
-#TagCornerImageView
+# TagCornerImageView
 TagCornerImageView 是一个自定义的imageview，你在imageview的四个角添加你不同风格的tag标签。
-##截图
+
+## 截图
 ![](http://ww1.sinaimg.cn/large/ace35ee1gw1f3xc9mun0vj206m0dcjsq.jpg)
 ![](http://ww4.sinaimg.cn/mw690/ace35ee1gw1f3xbxxsrdxj206m0dcwfv.jpg)
-##示例apk
+
+## 示例apk
 [Fir.im](http://fir.im/tagcornerimg)
-##特性
-TagCornerImageView 继承自ImageView,所以你可以当做ImageView来使用,也可以添加条形标签，三角标签，或是圆角矩形。.
-##使用
-###Maven
+
+## 特性
+TagCornerImageView 继承自ImageView,所以你可以当做ImageView来使用,也可以添加条形标签，三角标签，或是圆角矩形。
+
+## 使用
+### Maven
 ```xml
 <dependency>
   <groupId>me.wavever.tagcornerimageview</groupId>
@@ -17,7 +21,8 @@ TagCornerImageView 继承自ImageView,所以你可以当做ImageView来使用,�
   <type>pom</type>
 </dependency>
 ```
-###Gradle<br>
+
+### Gradle
 在你的module下的`build.gradle`添加:
 ```groovy
 dependencies {
@@ -26,7 +31,8 @@ dependencies {
     }
 }
 ```
-###自定义属性
+
+### 自定义属性
 `tag_type` 标签的样式，现在支持的样式有： `triangle` and `rect`。默认样式为 `rect`<br>
 `tag_text` 条形标签所要显示的文本。<br>
 `tag_text_color` 条形标签所要显示的文本颜色，默认为白色。<br>
@@ -39,7 +45,8 @@ dependencies {
 `right_bottom_corner` 和
 `left_bottom_corner`.<br>
 **注意** 条形标签目前只支持文字，所以在条形标签中使用`app:tag_icon`是无效的。
-###在xml里使用
+
+### 在xml里使用
 ```xml
 <me.wavever.library.TagCornerImageView
             android:id="@+id/rect_img1"
@@ -55,9 +62,6 @@ dependencies {
             app:tag_text_size="14sp"
             app:tag_type="rect" />
 ```
-##TODO
-* 自定义标签的宽度。
-* 添加更多的标签样式。
 
 License
 -------
