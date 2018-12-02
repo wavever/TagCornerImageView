@@ -13,8 +13,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
-import me.waveverht.library.R;
-
 /**
  * Created by wavever on 2016/4/19.
  */
@@ -38,8 +36,8 @@ public class TagCornerImageView extends ImageView {
     private String mTagText;
     private int mTagTextColor;
     private int mTagTextSize;
-    private int mTagGravity;
-    private int mTagType;
+    private ShapeGravity mTagGravity;
+    private ShapeType mTagType;
 
     private Bitmap mTagIcon;
     private boolean mTagIconTurn;
@@ -48,19 +46,7 @@ public class TagCornerImageView extends ImageView {
     private int mImgWidth;
     private int mImgHeight;
 
-
-    private enum Type {
-        TRIANGLE,
-        RECT,
-        ROUND_RECT
-    }
-
-    private enum Gravity {
-        LEFT_TOP,
-        RIGHT_TOP,
-        RIGHT_BOTTOM,
-        LEFT_BOTTOM
-    }
+    private CornerTag mCornerTag;
 
     public TagCornerImageView(Context context) {
         this(context, null);
@@ -73,25 +59,30 @@ public class TagCornerImageView extends ImageView {
     public TagCornerImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.TagCornerImageView, defStyleAttr, 0);
-        mTagBgColor = a.getColor(R.styleable.TagCornerImageView_tag_background_color, Color.BLUE);
-        mTagBgAlpha = a.getInt(R.styleable.TagCornerImageView_tag_background_alpha, DEFAULT_BG_ALPHA);
-        if (mTagBgAlpha != DEFAULT_BG_ALPHA) {
-            setTagBgAlpha(mTagBgAlpha);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TagCornerImageView, defStyleAttr, 0);
+        mTagBgColor = a.getColor(R.styleable.TagCornerImageView_tag_color, Color.RED);
+        if (a.hasValue(R.styleable.TagCornerImageView_tag_alpha)) {
+            mTagBgAlpha = a.getInt(R.styleable.TagCornerImageView_tag_alpha, DEFAULT_BG_ALPHA);
+            if (mTagBgAlpha != DEFAULT_BG_ALPHA) {
+                setTagBgAlpha(mTagBgAlpha);
+            }
         }
         mTagText = a.getString(R.styleable.TagCornerImageView_tag_text);
         mTagTextColor = a.getColor(R.styleable.TagCornerImageView_tag_text_color, Color.WHITE);
         mTagTextSize = a.getDimensionPixelSize(R.styleable.TagCornerImageView_tag_text_size,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics()));
-        mTagGravity = a.getInt(R.styleable.TagCornerImageView_tag_gravity, 0);
-        mTagType = a.getInt(R.styleable.TagCornerImageView_tag_type, 0);
+        mTagGravity = ShapeGravity.getGravity(a.getInt(R.styleable.TagCornerImageView_tag_gravity, 0));
+        mTagType = ShapeType.getType(a.getInt(R.styleable.TagCornerImageView_tag_type, 0));
         mTagIcon = BitmapFactory.decodeResource(getResources(), a.getResourceId(R.styleable.TagCornerImageView_tag_icon, 0));
         mTagIconTurn = a.getBoolean(R.styleable.TagCornerImageView_tag_icon_turn, true);
         mTagIconPadding = a.getDimensionPixelSize(R.styleable.TagCornerImageView_tag_icon_padding,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()));
-
         a.recycle();
+        mCornerTag = new CornerTag.Builder(this)
+                .backgroundColor(mTagBgColor)
+                .color(mTagTextColor)
+                .type(mTagType)
+                .build();
         init();
     }
 
@@ -116,22 +107,26 @@ public class TagCornerImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (mTagType == Type.TRIANGLE.ordinal()) {
+        if (mTagType == ShapeType.TRIANGLE) {
             drawTagTriangle(canvas);
-        } else if (mTagType == Type.RECT.ordinal()) {
+        } else if (mTagType == ShapeType.RECTANGLE) {
             drawTagRect(canvas);
-        } else if (mTagType == Type.ROUND_RECT.ordinal()) {
-            drawTagRoundRect(canvas);
         }
+    }
+
+    @Override
+    public void onDrawForeground(Canvas canvas) {
+        super.onDrawForeground(canvas);
+
     }
 
     private void drawTagTriangle(Canvas canvas) {
         int width = getMeasuredWidth() >= getMeasuredHeight() ? getMeasuredWidth() / 4 : getMeasuredHeight() / 4;
-        if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
+        if (mTagGravity == ShapeGravity.RIGHT_TOP) {
             drawTagTriangleRightTop(canvas, width);
-        } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
+        } else if (mTagGravity == ShapeGravity.RIGHT_BOTTOM) {
             drawTagTriangleRightBottom(canvas, width);
-        } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
+        } else if (mTagGravity == ShapeGravity.LEFT_BOTTOM) {
             drawTagTriangleLeftBottom(canvas, width);
         } else {
             drawTagTriangleLeftTop(canvas, width);
@@ -208,24 +203,13 @@ public class TagCornerImageView extends ImageView {
         canvas.restore();
     }
 
-    /**
-     * RoundRect Tag
-     *
-     * @param canvas
-     */
-    private void drawTagRoundRect(Canvas canvas) {
-        canvas.save();
-        canvas.drawCircle(getMeasuredHeight() / 3, getMeasuredHeight() / 3, 200, mTagPaint);
-        canvas.restore();
-    }
-
     private void drawTagRect(Canvas canvas) {
         int width = getMeasuredWidth() / 6;
-        if (mTagGravity == Gravity.RIGHT_TOP.ordinal()) {
+        if (mTagGravity == ShapeGravity.RIGHT_TOP) {
             drawTagRectRightTop(canvas, width);
-        } else if (mTagGravity == Gravity.RIGHT_BOTTOM.ordinal()) {
+        } else if (mTagGravity == ShapeGravity.RIGHT_BOTTOM) {
             drawTagRectRightBottom(canvas, width);
-        } else if (mTagGravity == Gravity.LEFT_BOTTOM.ordinal()) {
+        } else if (mTagGravity == ShapeGravity.LEFT_BOTTOM) {
             drawTagRectLeftBottom(canvas, width);
         } else {
             drawTagRectLeftTop(canvas, width);
@@ -326,7 +310,7 @@ public class TagCornerImageView extends ImageView {
     }
 
     public void setTagBgAlpha(int alpha) {
-        alpha &= 0xFF;          // keep it legal
+        alpha &= 0xFF; // keep it legal
         if (alpha != mTagBgAlpha) {
             mTagBgAlpha = alpha;
             invalidate();

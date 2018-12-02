@@ -1,0 +1,2 @@
+
+$ ./gradlew clean build bintrayUpload -PbintrayUser=wavever -PbintrayKey=72ea1ffb6b7264c83a6fd5d6c338c0ace2923275 -PdryRun=false

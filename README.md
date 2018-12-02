@@ -9,7 +9,7 @@ You can download demo from:[Fir.im](http://fir.im/tagcornerimg)
 ## Features
 TagCornerImageView is extended ImageView,so You can use it as a ImageView,and can add rect tag,triangle tag or rounded rectangle tag on corner.
 ## Usage
-###Maven
+### Maven
 ```xml
 <dependency>
   <groupId>me.wavever.tagcornerimageview</groupId>
@@ -18,6 +18,7 @@ TagCornerImageView is extended ImageView,so You can use it as a ImageView,and ca
   <type>pom</type>
 </dependency>
 ```
+
 ### Gradle
 Add this to your module's `build.gradle` file:
 ```groovy
@@ -27,6 +28,7 @@ dependencies {
     }
 }
 ```
+
 ### Custom Attribute
 `tag_type` the type of tag , now there are two types , `triangle` and `rect`.default value is `rect`<br>
 `tag_text` the text of rect tag.<br>
@@ -40,7 +42,8 @@ dependencies {
 `right_bottom_corner` and 
 `left_bottom_corner`.<br>
 **note** rect style now just support text,so use `app:tag_icon` in rect style is invalid.
-### xml
+
+### XML
 ```xml
 <me.wavever.library.TagCornerImageView
             android:id="@+id/rect_img1"
@@ -58,7 +61,7 @@ dependencies {
             app:tag_type="rect|triangle|round" />
 ```
 
-## License
+License
 -------
     Copyright (c) 2016 Wavever
 
